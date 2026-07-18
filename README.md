@@ -135,12 +135,3 @@ spotify-clone/
 - Spotify API integration
 
 ---
-
-
-<div align="center">
-
-### ⭐ If you enjoyed this project, consider giving it a star!
-
-Made with ❤️ using **HTML • CSS • JavaScript**
-
-</div>
