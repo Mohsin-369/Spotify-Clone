@@ -8,168 +8,233 @@
     <title>Spotify - Web Player: Music for everyone</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="main">
-        <div class="sidebar">
-            <div class="nav">
-                <div class="nav-option" style="opacity: 1;">
+        <aside class="sidebar">
+            <div class="nav-glass-panel nav-top">
+                <div class="brand-header">
+                    <img src="logo.png" alt="Spotify Logo" class="brand-logo">
+                    <span class="brand-name">Spotify</span>
+                </div>
+                <div class="nav-option active" id="nav-home">
                     <i class="fa-solid fa-house"></i>
                     <a href="#">Home</a>
                 </div>
-                <div class="nav-option">
+                <div class="nav-option" id="nav-search">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <a href="#">Search</a>
                 </div>
+                <div class="nav-option" id="nav-explore">
+                    <i class="fa-regular fa-compass"></i>
+                    <a href="#">Explore</a>
+                </div>
             </div>
             
-            <div class="library">
+            <div class="nav-glass-panel library">
                 <div class="options">
                     <div class="lib-option">
                         <img src="library_icon.png" alt="Library">
                         <a href="#">Your Library</a>
                     </div>
                     <div class="icons">
-                        <i class="fa-solid fa-plus" title="Create playlist or folder"></i>
-                        <i class="fa-solid fa-arrow-right" title="Show more"></i>
+                        <button class="icon-btn" id="btn-create-playlist-shortcut" title="Create playlist or folder">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                        <button class="icon-btn" id="btn-toggle-view" title="Filter library">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
                     </div>     
                 </div>
-                <div class="lib-box">
-                    <div class="box">
-                        <div class="box-p1">Create your first playlist</div>
-                        <div class="box-p2">It's easy, we'll help you</div>
-                        <button class="badge">Create playlist</button>
+
+                <div class="lib-box" id="library-list">
+                    <div class="box interactive-box">
+                        <div class="box-text">
+                            <div class="box-p1">Create your first playlist</div>
+                            <div class="box-p2">It's easy, we'll help you organize your favorites</div>
+                        </div>
+                        <button class="badge primary-badge" id="btn-open-create-playlist">Create playlist</button>
                     </div>
-                    <div class="box">
-                        <div class="box-p1">Let’s find some podcasts to follow</div>
-                        <div class="box-p2">We’ll keep you updated on new episodes</div>
-                        <button class="badge">Browse podcasts</button>
+                    <div class="box interactive-box">
+                        <div class="box-text">
+                            <div class="box-p1">Let’s find some podcasts</div>
+                            <div class="box-p2">We’ll keep you updated on new episodes</div>
+                        </div>
+                        <button class="badge secondary-badge" id="btn-browse-podcasts">Browse podcasts</button>
+                    </div>
+
+                    <div class="playlist-items-wrapper" id="custom-playlists-container">
+                        <div class="section-label">YOUR PLAYLISTS</div>
+                        <div class="playlist-list-item active-playlist" data-filter="all">
+                            <div class="playlist-icon-wrap"><i class="fa-solid fa-heart"></i></div>
+                            <div class="playlist-meta">
+                                <span class="title">Liked Songs</span>
+                                <span class="sub"><i class="fa-solid fa-thumbtack"></i> Playlist • 14 songs</span>
+                            </div>
+                        </div>
+                        <div class="playlist-list-item" data-filter="chill">
+                            <div class="playlist-icon-wrap"><i class="fa-solid fa-cloud-moon"></i></div>
+                            <div class="playlist-meta">
+                                <span class="title">Sunday Focus</span>
+                                <span class="sub">Playlist • Mohsin</span>
+                            </div>
+                        </div>
+                        <div class="playlist-list-item" data-filter="electro">
+                            <div class="playlist-icon-wrap"><i class="fa-solid fa-bolt"></i></div>
+                            <div class="playlist-meta">
+                                <span class="title">Neon Workouts</span>
+                                <span class="sub">Playlist • Spotify</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </aside>
         
-        <div class="main-content">
-            <div class="sticky-nav">
-                <div class="sticky-nav-icons">
-                    <img src="backward_icon.png" alt="Back">
-                    <img src="forward_icon.png" class="hide" alt="Forward">
+        <main class="main-content" id="main-content-scroll">
+            <header class="sticky-nav">
+                <div class="sticky-left">
+                    <div class="nav-arrows">
+                        <button class="circle-btn" id="btn-nav-back" title="Go back"><i class="fa-solid fa-chevron-left"></i></button>
+                        <button class="circle-btn" id="btn-nav-forward" title="Go forward"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                    <div class="search-bar-wrap">
+                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                        <input type="text" id="main-search-input" placeholder="What do you want to play?" autocomplete="off" />
+                        <button class="clear-search-btn" id="clear-search-btn" title="Clear search"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
                 </div>
+
                 <div class="sticky-nav-options">
-                    <button class="badge nav-item hide">Explore Premium</button>
-                    <button class="badge nav-item dark-badge"><i class="fa-solid fa-circle-down" style="margin-right: 5px;"></i>Install App</button>
-                    <i class="fa-regular fa-user nav-item" style="color: #fff; background-color: #000; padding: 0.5rem; border-radius: 50%;"></i>
+                    <button class="badge premium-badge hide-mobile" id="btn-explore-premium">Explore Premium</button>
+                    <button class="badge app-badge hide-mobile" id="btn-install-app"><i class="fa-solid fa-circle-down"></i> Install App</button>
+                    <button class="circle-btn notif-btn" id="btn-notifications" title="What's New"><i class="fa-regular fa-bell"></i></button>
+                    <button class="user-avatar-btn" id="btn-user-profile" title="Mohsin Manzoor">
+                        <i class="fa-regular fa-user"></i>
+                    </button>
                 </div>
+            </header>
+
+            <div class="filter-pills-bar">
+                <button class="pill-btn active" data-category="all">All</button>
+                <button class="pill-btn" data-category="music">Music</button>
+                <button class="pill-btn" data-category="podcasts">Podcasts</button>
+                <button class="pill-btn" data-category="chill">Chill Vibes</button>
+                <button class="pill-btn" data-category="study">Study & Focus</button>
+                <button class="pill-btn" data-category="electro">Electro & Dance</button>
+                <button class="pill-btn" data-category="india">Top India</button>
             </div>
 
-            <h2>Recently Played</h2>
-            <div class="cards-container">
-                <div class="card" data-track-id="0">
-                    <div class="card-img-container">
-                        <img src="card1img.jpeg" class="card-img" alt="Top 50 - Global">
-                        <button class="card-play-btn"><i class="fa-solid fa-play"></i></button>
-                    </div>
-                    <p class="card-title">Top 50 - Global</p>
-                    <p class="card-info">Your daily updates of the most played tracks right now...</p>
-                </div>
-            </div>
+            <section class="quick-access-section">
+                <h2 class="section-heading">Good afternoon</h2>
+                <div class="quick-grid" id="quick-grid-container"></div>
+            </section>
 
-            <h2>Trending now near you</h2>
-            <div class="cards-container">
-                <div class="card" data-track-id="1">
-                    <div class="card-img-container">
-                        <img src="card2img.jpeg" class="card-img" alt="Lofi Beats">
-                        <button class="card-play-btn"><i class="fa-solid fa-play"></i></button>
-                    </div>
-                    <p class="card-title">Lofi Beats</p>
-                    <p class="card-info">Chill lo-fi study beats to help you focus and relax...</p>
+            <section class="music-section" id="section-recently-played">
+                <div class="section-header">
+                    <h2>Recently Played</h2>
+                    <button class="see-all-btn">Show all</button>
                 </div>
+                <div class="cards-container" id="cards-recently-played"></div>
+            </section>
 
-                <div class="card" data-track-id="2">
-                    <div class="card-img-container">
-                        <img src="card3img.jpeg" class="card-img" alt="Chill Vibes">
-                        <button class="card-play-btn"><i class="fa-solid fa-play"></i></button>
-                    </div>
-                    <p class="card-title">Chill Vibes</p>
-                    <p class="card-info">Unwind with the ultimate collection of smooth tracks...</p>
+            <section class="music-section" id="section-trending">
+                <div class="section-header">
+                    <h2>Trending now near you</h2>
+                    <button class="see-all-btn">Show all</button>
                 </div>
+                <div class="cards-container" id="cards-trending"></div>
+            </section>
 
-                <div class="card" data-track-id="3">
-                    <div class="card-img-container">
-                        <img src="card4img.jpeg" class="card-img" alt="Midnight Study">
-                        <button class="card-play-btn"><i class="fa-solid fa-play"></i></button>
-                    </div>
-                    <p class="card-title">Midnight Study</p>
-                    <p class="card-info">Deep focus playlist for late night coding and studying...</p>
+            <section class="music-section" id="section-charts">
+                <div class="section-header">
+                    <h2>Featured Charts</h2>
+                    <button class="see-all-btn">Show all</button>
                 </div>
-
-                <div class="card" data-track-id="4">
-                    <div class="card-img-container">
-                        <img src="card3img.jpeg" class="card-img" alt="Acoustic Pop">
-                        <button class="card-play-btn"><i class="fa-solid fa-play"></i></button>
-                    </div>
-                    <p class="card-title">Acoustic Pop</p>
-                    <p class="card-info">Organic sounds and acoustic covers of popular songs...</p>
-                </div>
-
-                <div class="card" data-track-id="5">
-                    <div class="card-img-container">
-                        <img src="card4img.jpeg" class="card-img" alt="Night Drive">
-                        <button class="card-play-btn"><i class="fa-solid fa-play"></i></button>
-                    </div>
-                    <p class="card-title">Night Drive</p>
-                    <p class="card-info">Synthwave and deep drive instrumentals for the open road...</p>
-                </div>
-            </div>
-
-            <h2>Featured Charts</h2>
-            <div class="cards-container">
-                <div class="card" data-track-id="6">
-                    <div class="card-img-container">
-                        <img src="card5img.jpeg" class="card-img" alt="Electro Party">
-                        <button class="card-play-btn"><i class="fa-solid fa-play"></i></button>
-                    </div>
-                    <p class="card-title">Electro Party</p>
-                    <p class="card-info">High-energy electronic beats to light up the night...</p>
-                </div>
-
-                <div class="card" data-track-id="7">
-                    <div class="card-img-container">
-                        <img src="card6img.jpeg" class="card-img" alt="Top Songs - India">
-                        <button class="card-play-btn"><i class="fa-solid fa-play"></i></button>
-                    </div>
-                    <p class="card-title">Top Songs - India</p>
-                    <p class="card-info">Trending Indian pop, Bollywood and indie hits...</p>
-                </div>
-
-                <div class="card" data-track-id="8">
-                    <div class="card-img-container">
-                        <img src="card1img.jpeg" class="card-img" alt="Acoustic Hits">
-                        <button class="card-play-btn"><i class="fa-solid fa-play"></i></button>
-                    </div>
-                    <p class="card-title">Acoustic Hits</p>
-                    <p class="card-info">Simply the best acoustic singer-songwriter tracks...</p>
-                </div>
-            </div>
+                <div class="cards-container" id="cards-charts"></div>
+            </section>
             
-            <div class="footer">
-                <div class="line"></div>
+            <footer class="footer">
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <span class="footer-title">Company</span>
+                        <a href="#">About</a>
+                        <a href="#">Jobs</a>
+                        <a href="#">For the Record</a>
+                    </div>
+                    <div class="footer-col">
+                        <span class="footer-title">Communities</span>
+                        <a href="#">For Artists</a>
+                        <a href="#">Developers</a>
+                        <a href="#">Advertising</a>
+                        <a href="#">Investors</a>
+                    </div>
+                    <div class="footer-col">
+                        <span class="footer-title">Useful links</span>
+                        <a href="#">Support</a>
+                        <a href="#">Free Mobile App</a>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="line"></div>
+                    <div class="copyright">
+                        <span>© 2026 Spotify Light Web Player • All rights reserved</span>
+                        <span>Designed with Clean Glassmorphism & Light Theme</span>
+                    </div>
+                </div>
+            </footer>
+        </main>
+
+        <aside class="friend-activity-panel" id="friend-activity-panel">
+            <div class="panel-header">
+                <h3>Friend Activity</h3>
+                <button class="icon-btn close-panel-btn" id="btn-close-friend-panel"><i class="fa-solid fa-xmark"></i></button>
             </div>
-        </div>
+            <div class="friend-list">
+                <div class="friend-item">
+                    <div class="friend-avatar"><i class="fa-solid fa-user-astronaut"></i></div>
+                    <div class="friend-info">
+                        <div class="friend-name">Alex Rivera</div>
+                        <div class="friend-song"><i class="fa-solid fa-music"></i> Midnight Study</div>
+                        <div class="friend-artist">Late Night Chill • 2m ago</div>
+                    </div>
+                </div>
+                <div class="friend-item">
+                    <div class="friend-avatar"><i class="fa-solid fa-user-ninja"></i></div>
+                    <div class="friend-info">
+                        <div class="friend-name">Elena Rostova</div>
+                        <div class="friend-song"><i class="fa-solid fa-music"></i> Electro Party</div>
+                        <div class="friend-artist">Synth Club • 12m ago</div>
+                    </div>
+                </div>
+                <div class="friend-item">
+                    <div class="friend-avatar"><i class="fa-solid fa-user-tie"></i></div>
+                    <div class="friend-info">
+                        <div class="friend-name">Marcus Chen</div>
+                        <div class="friend-song"><i class="fa-solid fa-music"></i> Top 50 - Global</div>
+                        <div class="friend-artist">Spotify Editorial • 1h ago</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
         
-        <div class="music-player">
-            <canvas id="visualizer" class="music-player-canvas"></canvas>
-            
+        <footer class="music-player">
             <div class="album">
-                <img src="album_picture.jpeg" class="album-art" id="current-album-art" alt="Album Art">
+                <div class="album-art-wrap">
+                    <img src="album_picture.jpeg" class="album-art" id="current-album-art" alt="Album Art">
+                </div>
                 <div class="album-info">
                     <a href="#" class="track-title" id="current-track-title">Top 50 - Global</a>
-                    <a href="#" class="track-artist" id="current-track-artist">Spotify Playlist</a>
+                    <a href="#" class="track-artist" id="current-track-artist">Spotify Editorial</a>
                 </div>
-                <button class="like-btn" id="like-btn" title="Save to Your Library"><i class="fa-regular fa-heart"></i></button>
-                <button class="pip-btn" id="pip-btn" title="Picture in Picture"><i class="fa-solid fa-up-right-from-square" style="font-size: 0.8rem;"></i></button>
+                <button class="player-action-btn like-btn" id="like-btn" title="Save to Your Library">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+                <button class="player-action-btn pip-btn" id="pip-btn" title="Picture in Picture">
+                    <i class="fa-solid fa-up-right-from-square"></i>
+                </button>
             </div>
             
             <div class="player">
@@ -182,23 +247,129 @@
                 </div>
                 <div class="playback-bar">
                     <span class="curr-time" id="curr-time">00:00</span>
-                    <input type="range" min="0" max="100" value="0" class="progress-bar" id="progress-bar">
+                    <div class="slider-wrapper">
+                        <input type="range" min="0" max="100" value="0" class="progress-bar" id="progress-bar">
+                        <div class="slider-fill" id="progress-fill"></div>
+                    </div>
                     <span class="tot-time" id="tot-time">03:33</span>
                 </div>
             </div>
             
             <div class="controls">
-                <button class="control-btn" title="Lyrics"><i class="fa-solid fa-microphone"></i></button>
-                <button class="control-btn" title="Queue"><i class="fa-solid fa-bars"></i></button>
-                <button class="control-btn" title="Connect to device"><i class="fa-solid fa-laptop-code"></i></button>
+                <button class="control-btn" id="lyrics-toggle-btn" title="Lyrics"><i class="fa-solid fa-microphone"></i></button>
+                <button class="control-btn" id="queue-toggle-btn" title="Queue"><i class="fa-solid fa-bars"></i></button>
+                <button class="control-btn" id="devices-toggle-btn" title="Connect to a device"><i class="fa-solid fa-laptop-code"></i></button>
+                <button class="control-btn" id="friend-activity-toggle-btn" title="Friend Activity"><i class="fa-solid fa-user-group"></i></button>
+                
                 <div class="volume-container">
                     <button class="control-btn" id="volume-btn" title="Mute"><i class="fa-solid fa-volume-high"></i></button>
-                    <input type="range" min="0" max="100" value="70" class="volume-bar" id="volume-bar">
+                    <div class="slider-wrapper volume-slider-wrap">
+                        <input type="range" min="0" max="100" value="70" class="volume-bar" id="volume-bar">
+                        <div class="slider-fill" id="volume-fill"></div>
+                    </div>
                 </div>
                 <button class="control-btn" id="fullscreen-btn" title="Full screen"><i class="fa-solid fa-expand"></i></button>
             </div>
+        </footer>
+    </div>
+
+    <div class="glass-modal-overlay" id="lyrics-modal">
+        <div class="glass-modal lyrics-content-box">
+            <div class="modal-header">
+                <div class="modal-title-group">
+                    <span class="modal-badge"><i class="fa-solid fa-music"></i> Real-time Lyrics</span>
+                    <h3 id="lyrics-song-title">Top 50 - Global</h3>
+                </div>
+                <button class="modal-close-btn" id="close-lyrics-modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="lyrics-scroll-body" id="lyrics-container"></div>
         </div>
     </div>
+
+    <div class="glass-drawer-overlay" id="queue-drawer">
+        <div class="glass-drawer queue-content-box">
+            <div class="drawer-header">
+                <h3>Play Queue</h3>
+                <button class="modal-close-btn" id="close-queue-drawer"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="queue-section">
+                <div class="queue-subtitle">Now Playing</div>
+                <div class="queue-item now-playing" id="queue-now-playing"></div>
+            </div>
+            <div class="queue-section">
+                <div class="queue-subtitle">Next From: Playlist</div>
+                <div class="queue-list" id="queue-up-next-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="glass-modal-overlay" id="devices-modal">
+        <div class="glass-modal device-modal-box">
+            <div class="modal-header">
+                <h3>Connect to a device</h3>
+                <button class="modal-close-btn" id="close-devices-modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="device-list">
+                <div class="device-item active" data-device="Current Browser">
+                    <div class="device-icon"><i class="fa-solid fa-laptop"></i></div>
+                    <div class="device-info">
+                        <div class="device-name">This Web Browser (Chrome / Safari)</div>
+                        <div class="device-status"><i class="fa-solid fa-volume-high"></i> Listening On • Spotify Web</div>
+                    </div>
+                    <i class="fa-solid fa-check active-check"></i>
+                </div>
+                <div class="device-item" data-device="Living Room Speaker">
+                    <div class="device-icon"><i class="fa-solid fa-satellite-dish"></i></div>
+                    <div class="device-info">
+                        <div class="device-name">Living Room Soundbar</div>
+                        <div class="device-status">Spotify Connect • Available</div>
+                    </div>
+                </div>
+                <div class="device-item" data-device="Mohsin's iPhone 15 Pro">
+                    <div class="device-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+                    <div class="device-info">
+                        <div class="device-name">iPhone 15 Pro</div>
+                        <div class="device-status">AirPlay & Spotify Connect</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="glass-modal-overlay" id="create-playlist-modal">
+        <div class="glass-modal form-modal-box">
+            <div class="modal-header">
+                <h3>Create New Playlist</h3>
+                <button class="modal-close-btn" id="close-create-playlist-modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form id="create-playlist-form" class="modal-form">
+                <div class="form-group">
+                    <label for="playlist-name-input">Playlist Name</label>
+                    <input type="text" id="playlist-name-input" placeholder="My Awesome Playlist #1" required maxlength="40" />
+                </div>
+                <div class="form-group">
+                    <label for="playlist-desc-input">Description (Optional)</label>
+                    <textarea id="playlist-desc-input" placeholder="Give your playlist a catchy description" rows="3" maxlength="120"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Choose Icon</label>
+                    <div class="icon-picker">
+                        <label class="icon-choice active"><input type="radio" name="playlist-icon" value="fa-music" checked><i class="fa-solid fa-music"></i></label>
+                        <label class="icon-choice"><input type="radio" name="playlist-icon" value="fa-heart"><i class="fa-solid fa-heart"></i></label>
+                        <label class="icon-choice"><input type="radio" name="playlist-icon" value="fa-bolt"><i class="fa-solid fa-bolt"></i></label>
+                        <label class="icon-choice"><input type="radio" name="playlist-icon" value="fa-fire"><i class="fa-solid fa-fire"></i></label>
+                        <label class="icon-choice"><input type="radio" name="playlist-icon" value="fa-star"><i class="fa-solid fa-star"></i></label>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="badge secondary-badge" id="btn-cancel-create-playlist">Cancel</button>
+                    <button type="submit" class="badge primary-badge">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="toast-container" id="toast-container"></div>
 
     <script src="app.js"></script>
 </body>
